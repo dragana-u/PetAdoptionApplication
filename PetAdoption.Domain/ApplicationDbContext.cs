@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using PetAdoption.Domain.DomainModels;
 
 namespace PetAdoption.Domain.Identity;
 
@@ -9,4 +10,8 @@ public class ApplicationDbContext : IdentityDbContext<PetAdoptionApplicationUser
         : base(options)
     {
     }
+    public DbSet<Animal> Animals { get; set; }
+    public DbSet<Species> Species { get; set; }
+    public DbSet<AdoptionForm> AdoptionForms { get; set; }
+    public DbSet<AdoptionShelter> AdoptionShelters { get; set; }
 }

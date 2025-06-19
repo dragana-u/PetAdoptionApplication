@@ -15,3 +15,4 @@ C:\Users\Dragana\Desktop\Dragana\Finki\Semestri\VI semestar\IS\PetAdoptionApplic
 C:\Users\Dragana\Desktop\Dragana\Finki\Semestri\VI semestar\IS\PetAdoptionApplication\PetAdoption.Service\obj\Debug\net8.0\refint\PetAdoption.Service.dll
 C:\Users\Dragana\Desktop\Dragana\Finki\Semestri\VI semestar\IS\PetAdoptionApplication\PetAdoption.Service\obj\Debug\net8.0\PetAdoption.Service.pdb
 C:\Users\Dragana\Desktop\Dragana\Finki\Semestri\VI semestar\IS\PetAdoptionApplication\PetAdoption.Service\obj\Debug\net8.0\ref\PetAdoption.Service.dll
+C:\Users\Dragana\Desktop\Dragana\Finki\Semestri\VI semestar\IS\PetAdoptionApplication\PetAdoption.Service\obj\Debug\net8.0\PetAdoption.Service.sourcelink.json

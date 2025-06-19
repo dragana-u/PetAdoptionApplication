@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PetAdoption.Domain.Identity;
 
@@ -11,9 +12,11 @@ using PetAdoption.Domain.Identity;
 namespace PetAdoption.Domain.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250619204143_models3")]
+    partial class models3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -165,10 +168,11 @@ namespace PetAdoption.Domain.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("AnimalId")
+                    b.Property<Guid>("AnimalId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("ApplicantId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Message")
@@ -177,7 +181,7 @@ namespace PetAdoption.Domain.Migrations
                     b.Property<string>("Status")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("SubmittedOn")
+                    b.Property<DateTime>("SubmittedOn")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
@@ -406,11 +410,15 @@ namespace PetAdoption.Domain.Migrations
                 {
                     b.HasOne("PetAdoption.Domain.DomainModels.Animal", "Animal")
                         .WithMany("AdoptionForms")
-                        .HasForeignKey("AnimalId");
+                        .HasForeignKey("AnimalId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("PetAdoption.Domain.Identity.PetAdoptionApplicationUser", "Applicant")
                         .WithMany("AdoptionForms")
-                        .HasForeignKey("ApplicantId");
+                        .HasForeignKey("ApplicantId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Animal");
 
