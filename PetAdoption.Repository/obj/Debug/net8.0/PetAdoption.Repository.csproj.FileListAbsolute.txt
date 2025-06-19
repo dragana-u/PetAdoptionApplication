@@ -1,0 +1,15 @@
+C:\Users\Dragana\Desktop\Dragana\Finki\Semestri\VI semestar\IS\PetAdoptionApplication\PetAdoption.Repository\obj\Debug\net8.0\PetAdoption.Repository.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Dragana\Desktop\Dragana\Finki\Semestri\VI semestar\IS\PetAdoptionApplication\PetAdoption.Repository\obj\Debug\net8.0\PetAdoption.Repository.AssemblyInfoInputs.cache
+C:\Users\Dragana\Desktop\Dragana\Finki\Semestri\VI semestar\IS\PetAdoptionApplication\PetAdoption.Repository\obj\Debug\net8.0\PetAdoption.Repository.AssemblyInfo.cs
+C:\Users\Dragana\Desktop\Dragana\Finki\Semestri\VI semestar\IS\PetAdoptionApplication\PetAdoption.Repository\obj\Debug\net8.0\PetAdoption.Repository.csproj.CoreCompileInputs.cache
+C:\Users\Dragana\Desktop\Dragana\Finki\Semestri\VI semestar\IS\PetAdoptionApplication\PetAdoption.Repository\obj\Debug\net8.0\PetAdoption.Repository.csproj.AssemblyReference.cache
+C:\Users\Dragana\Desktop\Dragana\Finki\Semestri\VI semestar\IS\PetAdoptionApplication\PetAdoption.Repository\bin\Debug\net8.0\PetAdoption.Repository.deps.json
+C:\Users\Dragana\Desktop\Dragana\Finki\Semestri\VI semestar\IS\PetAdoptionApplication\PetAdoption.Repository\bin\Debug\net8.0\PetAdoption.Repository.dll
+C:\Users\Dragana\Desktop\Dragana\Finki\Semestri\VI semestar\IS\PetAdoptionApplication\PetAdoption.Repository\bin\Debug\net8.0\PetAdoption.Repository.pdb
+C:\Users\Dragana\Desktop\Dragana\Finki\Semestri\VI semestar\IS\PetAdoptionApplication\PetAdoption.Repository\bin\Debug\net8.0\PetAdoption.Domain.dll
+C:\Users\Dragana\Desktop\Dragana\Finki\Semestri\VI semestar\IS\PetAdoptionApplication\PetAdoption.Repository\bin\Debug\net8.0\PetAdoption.Domain.pdb
+C:\Users\Dragana\Desktop\Dragana\Finki\Semestri\VI semestar\IS\PetAdoptionApplication\PetAdoption.Repository\obj\Debug\net8.0\PetAdopt.7B395FA1.Up2Date
+C:\Users\Dragana\Desktop\Dragana\Finki\Semestri\VI semestar\IS\PetAdoptionApplication\PetAdoption.Repository\obj\Debug\net8.0\PetAdoption.Repository.dll
+C:\Users\Dragana\Desktop\Dragana\Finki\Semestri\VI semestar\IS\PetAdoptionApplication\PetAdoption.Repository\obj\Debug\net8.0\refint\PetAdoption.Repository.dll
+C:\Users\Dragana\Desktop\Dragana\Finki\Semestri\VI semestar\IS\PetAdoptionApplication\PetAdoption.Repository\obj\Debug\net8.0\PetAdoption.Repository.pdb
+C:\Users\Dragana\Desktop\Dragana\Finki\Semestri\VI semestar\IS\PetAdoptionApplication\PetAdoption.Repository\obj\Debug\net8.0\ref\PetAdoption.Repository.dll
