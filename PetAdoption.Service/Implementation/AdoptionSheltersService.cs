@@ -1,4 +1,6 @@
-﻿using PetAdoption.Domain.DomainModels;
+﻿using Microsoft.EntityFrameworkCore;
+using PetAdoption.Domain.DomainModels;
+using PetAdoption.Repository;
 using PetAdoption.Service.Interface;
 using System;
 using System.Collections.Generic;
@@ -10,29 +12,37 @@ namespace PetAdoption.Service.Implementation
 {
     public class AdoptionSheltersService : IAdoptionSheltersService
     {
+        private readonly IRepository<AdoptionShelter> _adoptionShelterRepository;
+
+        public AdoptionSheltersService(IRepository<AdoptionShelter> adoptionShelterRepository)
+        {
+            _adoptionShelterRepository = adoptionShelterRepository;
+        }
+
         public AdoptionShelter Add(AdoptionShelter adoptionShelter)
         {
-            throw new NotImplementedException();
+            return _adoptionShelterRepository.Insert(adoptionShelter);
         }
 
         public AdoptionShelter DeleteById(Guid Id)
         {
-            throw new NotImplementedException();
+            var adoptionShelter = _adoptionShelterRepository.Get(selector: x => x, predicate: y => y.Id == Id);
+            return _adoptionShelterRepository.Delete(adoptionShelter);
         }
 
         public List<AdoptionShelter> GetAll()
         {
-            throw new NotImplementedException();
+            return _adoptionShelterRepository.GetAll(selector: x => x, include: x => x.Include(y => y.Animals)).ToList();
         }
 
         public AdoptionShelter? GetById(Guid Id)
         {
-            throw new NotImplementedException();
+            return _adoptionShelterRepository.Get(selector: x => x, predicate: y => y.Id == Id);
         }
 
         public AdoptionShelter Update(AdoptionShelter adoptionShelter)
         {
-            throw new NotImplementedException();
+            return _adoptionShelterRepository.Update(adoptionShelter);
         }
     }
 }

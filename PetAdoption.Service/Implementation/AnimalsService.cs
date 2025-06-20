@@ -1,4 +1,6 @@
-﻿using PetAdoption.Domain.DomainModels;
+﻿using Microsoft.EntityFrameworkCore;
+using PetAdoption.Domain.DomainModels;
+using PetAdoption.Repository;
 using PetAdoption.Service.Interface;
 using System;
 using System.Collections.Generic;
@@ -10,29 +12,37 @@ namespace PetAdoption.Service.Implementation
 {
     public class AnimalsService : IAnimalsService
     {
-        public Animal Add(Animal animal)
+        private readonly IRepository<Animal> _animalRepository;
+
+        public AnimalsService(IRepository<Animal> AnimalRepository)
         {
-            throw new NotImplementedException();
+            _animalRepository = AnimalRepository;
+        }
+
+        public Animal Add(Animal Animal)
+        {
+            return _animalRepository.Insert(Animal);
         }
 
         public Animal DeleteById(Guid Id)
         {
-            throw new NotImplementedException();
+            var Animal = _animalRepository.Get(selector: x => x, predicate: y => y.Id == Id);
+            return _animalRepository.Delete(Animal);
         }
 
         public List<Animal> GetAll()
         {
-            throw new NotImplementedException();
+            return _animalRepository.GetAll(selector: x => x, include: x => x.Include(y => y.AdoptionForms)).ToList();
         }
 
         public Animal? GetById(Guid Id)
         {
-            throw new NotImplementedException();
+            return _animalRepository.Get(selector: x => x, predicate: y => y.Id == Id);
         }
 
-        public Animal Update(Animal animal)
+        public Animal Update(Animal Animal)
         {
-            throw new NotImplementedException();
+            return _animalRepository.Update(Animal);
         }
     }
 }
