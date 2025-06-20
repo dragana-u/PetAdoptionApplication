@@ -48,6 +48,66 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Dragana/Desktop/Dragana/Finki/Semestri/VI semestar/IS/PetAdoptionApplication/PetAdoption.Web/Views/AdoptionForms/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRvcHRpb25Gb3Jtc1xDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Dragana/Desktop/Dragana/Finki/Semestri/VI semestar/IS/PetAdoptionApplication/PetAdoption.Web/Views/AdoptionForms/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRvcHRpb25Gb3Jtc1xEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Dragana/Desktop/Dragana/Finki/Semestri/VI semestar/IS/PetAdoptionApplication/PetAdoption.Web/Views/AdoptionForms/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRvcHRpb25Gb3Jtc1xEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Dragana/Desktop/Dragana/Finki/Semestri/VI semestar/IS/PetAdoptionApplication/PetAdoption.Web/Views/AdoptionForms/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRvcHRpb25Gb3Jtc1xFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Dragana/Desktop/Dragana/Finki/Semestri/VI semestar/IS/PetAdoptionApplication/PetAdoption.Web/Views/AdoptionForms/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRvcHRpb25Gb3Jtc1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Dragana/Desktop/Dragana/Finki/Semestri/VI semestar/IS/PetAdoptionApplication/PetAdoption.Web/Views/AdoptionShelters/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRvcHRpb25TaGVsdGVyc1xDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Dragana/Desktop/Dragana/Finki/Semestri/VI semestar/IS/PetAdoptionApplication/PetAdoption.Web/Views/AdoptionShelters/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRvcHRpb25TaGVsdGVyc1xEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Dragana/Desktop/Dragana/Finki/Semestri/VI semestar/IS/PetAdoptionApplication/PetAdoption.Web/Views/AdoptionShelters/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRvcHRpb25TaGVsdGVyc1xEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Dragana/Desktop/Dragana/Finki/Semestri/VI semestar/IS/PetAdoptionApplication/PetAdoption.Web/Views/AdoptionShelters/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRvcHRpb25TaGVsdGVyc1xFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Dragana/Desktop/Dragana/Finki/Semestri/VI semestar/IS/PetAdoptionApplication/PetAdoption.Web/Views/AdoptionShelters/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRvcHRpb25TaGVsdGVyc1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Dragana/Desktop/Dragana/Finki/Semestri/VI semestar/IS/PetAdoptionApplication/PetAdoption.Web/Views/Animals/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQW5pbWFsc1xDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Dragana/Desktop/Dragana/Finki/Semestri/VI semestar/IS/PetAdoptionApplication/PetAdoption.Web/Views/Animals/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQW5pbWFsc1xEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Dragana/Desktop/Dragana/Finki/Semestri/VI semestar/IS/PetAdoptionApplication/PetAdoption.Web/Views/Animals/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQW5pbWFsc1xEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Dragana/Desktop/Dragana/Finki/Semestri/VI semestar/IS/PetAdoptionApplication/PetAdoption.Web/Views/Animals/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQW5pbWFsc1xFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Dragana/Desktop/Dragana/Finki/Semestri/VI semestar/IS/PetAdoptionApplication/PetAdoption.Web/Views/Animals/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQW5pbWFsc1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Dragana/Desktop/Dragana/Finki/Semestri/VI semestar/IS/PetAdoptionApplication/PetAdoption.Web/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -66,6 +126,26 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/Dragana/Desktop/Dragana/Finki/Semestri/VI semestar/IS/PetAdoptionApplication/PetAdoption.Web/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Dragana/Desktop/Dragana/Finki/Semestri/VI semestar/IS/PetAdoptionApplication/PetAdoption.Web/Views/Species/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3BlY2llc1xDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Dragana/Desktop/Dragana/Finki/Semestri/VI semestar/IS/PetAdoptionApplication/PetAdoption.Web/Views/Species/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3BlY2llc1xEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Dragana/Desktop/Dragana/Finki/Semestri/VI semestar/IS/PetAdoptionApplication/PetAdoption.Web/Views/Species/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3BlY2llc1xEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Dragana/Desktop/Dragana/Finki/Semestri/VI semestar/IS/PetAdoptionApplication/PetAdoption.Web/Views/Species/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3BlY2llc1xFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Dragana/Desktop/Dragana/Finki/Semestri/VI semestar/IS/PetAdoptionApplication/PetAdoption.Web/Views/Species/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3BlY2llc1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Dragana/Desktop/Dragana/Finki/Semestri/VI semestar/IS/PetAdoptionApplication/PetAdoption.Web/Views/_ViewImports.cshtml]
