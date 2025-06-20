@@ -9,7 +9,7 @@ using PetAdoption.Domain.Identity;
 
 #nullable disable
 
-namespace PetAdoption.Domain.Migrations
+namespace PetAdoption.Repository.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     [Migration("20250619204143_models3")]

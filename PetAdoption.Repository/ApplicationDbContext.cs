@@ -1,8 +1,9 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using PetAdoption.Domain.DomainModels;
+using PetAdoption.Domain.Identity;
 
-namespace PetAdoption.Domain.Identity;
+namespace PetAdoption.Repository;
 
 public class ApplicationDbContext : IdentityDbContext<PetAdoptionApplicationUser>
 {

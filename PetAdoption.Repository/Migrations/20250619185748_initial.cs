@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace PetAdoption.Domain.Migrations
+namespace PetAdoption.Repository.Migrations
 {
     /// <inheritdoc />
     public partial class initial : Migration
