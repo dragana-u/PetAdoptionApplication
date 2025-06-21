@@ -7,34 +7,35 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using PetAdoption.Domain.DomainModels;
 using PetAdoption.Repository;
+using PetAdoption.Service.Interface;
 
 namespace PetAdoption.Web.Controllers
 {
     public class AdoptionSheltersController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IAdoptionSheltersService _adoptionSheltersService;
 
-        public AdoptionSheltersController(ApplicationDbContext context)
+        public AdoptionSheltersController(IAdoptionSheltersService adoptionSheltersService)
         {
-            _context = context;
+            _adoptionSheltersService = adoptionSheltersService;
         }
 
+
         // GET: AdoptionShelters
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            return View(await _context.AdoptionShelters.ToListAsync());
+            return View(_adoptionSheltersService.GetAll());
         }
 
         // GET: AdoptionShelters/Details/5
-        public async Task<IActionResult> Details(Guid? id)
+        public IActionResult Details(Guid? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var adoptionShelter = await _context.AdoptionShelters
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var adoptionShelter = _adoptionSheltersService.GetById(id.Value);
             if (adoptionShelter == null)
             {
                 return NotFound();
@@ -54,27 +55,26 @@ namespace PetAdoption.Web.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Name,Address,PhoneNumber,Website,Id")] AdoptionShelter adoptionShelter)
+        public IActionResult Create([Bind("Name,Address,PhoneNumber,Website,Id")] AdoptionShelter adoptionShelter)
         {
             if (ModelState.IsValid)
             {
                 adoptionShelter.Id = Guid.NewGuid();
-                _context.Add(adoptionShelter);
-                await _context.SaveChangesAsync();
+                _adoptionSheltersService.Add(adoptionShelter);
                 return RedirectToAction(nameof(Index));
             }
             return View(adoptionShelter);
         }
 
         // GET: AdoptionShelters/Edit/5
-        public async Task<IActionResult> Edit(Guid? id)
+        public IActionResult Edit(Guid? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var adoptionShelter = await _context.AdoptionShelters.FindAsync(id);
+            var adoptionShelter = _adoptionSheltersService.GetById(id.Value);
             if (adoptionShelter == null)
             {
                 return NotFound();
@@ -87,7 +87,7 @@ namespace PetAdoption.Web.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("Name,Address,PhoneNumber,Website,Id")] AdoptionShelter adoptionShelter)
+        public IActionResult Edit(Guid id, [Bind("Name,Address,PhoneNumber,Website,Id")] AdoptionShelter adoptionShelter)
         {
             if (id != adoptionShelter.Id)
             {
@@ -98,8 +98,7 @@ namespace PetAdoption.Web.Controllers
             {
                 try
                 {
-                    _context.Update(adoptionShelter);
-                    await _context.SaveChangesAsync();
+                    _adoptionSheltersService.Update(adoptionShelter);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -118,15 +117,14 @@ namespace PetAdoption.Web.Controllers
         }
 
         // GET: AdoptionShelters/Delete/5
-        public async Task<IActionResult> Delete(Guid? id)
+        public IActionResult Delete(Guid? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var adoptionShelter = await _context.AdoptionShelters
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var adoptionShelter = _adoptionSheltersService.GetById(id.Value);
             if (adoptionShelter == null)
             {
                 return NotFound();
@@ -138,21 +136,19 @@ namespace PetAdoption.Web.Controllers
         // POST: AdoptionShelters/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(Guid id)
+        public IActionResult DeleteConfirmed(Guid id)
         {
-            var adoptionShelter = await _context.AdoptionShelters.FindAsync(id);
+            var adoptionShelter = _adoptionSheltersService.DeleteById(id);
             if (adoptionShelter != null)
             {
-                _context.AdoptionShelters.Remove(adoptionShelter);
+                _adoptionSheltersService.DeleteById(id);
             }
-
-            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool AdoptionShelterExists(Guid id)
         {
-            return _context.AdoptionShelters.Any(e => e.Id == id);
+            return _adoptionSheltersService.GetById(id) != null;
         }
     }
 }

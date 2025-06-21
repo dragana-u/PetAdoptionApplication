@@ -7,36 +7,37 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using PetAdoption.Domain.DomainModels;
 using PetAdoption.Repository;
+using PetAdoption.Service.Implementation;
+using PetAdoption.Service.Interface;
 
 namespace PetAdoption.Web.Controllers
 {
     public class AnimalsController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IAnimalsService _animalsService;
+        private readonly ISpeciesService _speciesService;
 
-        public AnimalsController(ApplicationDbContext context)
+        public AnimalsController(IAnimalsService animalsService, ISpeciesService speciesService)
         {
-            _context = context;
+            _animalsService = animalsService;
+            _speciesService = speciesService;
         }
 
         // GET: Animals
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            var applicationDbContext = _context.Animals.Include(a => a.Species);
-            return View(await applicationDbContext.ToListAsync());
+            return View(_animalsService.GetAll());
         }
 
         // GET: Animals/Details/5
-        public async Task<IActionResult> Details(Guid? id)
+        public IActionResult Details(Guid? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var animal = await _context.Animals
-                .Include(a => a.Species)
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var animal = _animalsService.GetById(id.Value);
             if (animal == null)
             {
                 return NotFound();
@@ -48,7 +49,7 @@ namespace PetAdoption.Web.Controllers
         // GET: Animals/Create
         public IActionResult Create()
         {
-            ViewData["SpeciesId"] = new SelectList(_context.Species, "Id", "Name");
+            ViewData["SpeciesId"] = new SelectList(_speciesService.GetAll(), "Id", "Name");
             return View();
         }
 
@@ -57,33 +58,32 @@ namespace PetAdoption.Web.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Name,Description,Age,Gender,Breed,Size,IntakeDate,ImageUrl,Status,SpeciesId,Id")] Animal animal)
+        public IActionResult Create([Bind("Name,Description,Age,Gender,Breed,Size,IntakeDate,ImageUrl,Status,SpeciesId,Id")] Animal animal)
         {
             if (ModelState.IsValid)
             {
                 animal.Id = Guid.NewGuid();
-                _context.Add(animal);
-                await _context.SaveChangesAsync();
+                _animalsService.Add(animal);
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["SpeciesId"] = new SelectList(_context.Species, "Id", "Name", animal.SpeciesId);
+            ViewData["SpeciesId"] = new SelectList(_speciesService.GetAll(), "Id", "Name");
             return View(animal);
         }
 
         // GET: Animals/Edit/5
-        public async Task<IActionResult> Edit(Guid? id)
+        public IActionResult Edit(Guid? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var animal = await _context.Animals.FindAsync(id);
+            var animal = _animalsService.GetById(id.Value);
             if (animal == null)
             {
                 return NotFound();
             }
-            ViewData["SpeciesId"] = new SelectList(_context.Species, "Id", "Name", animal.SpeciesId);
+            ViewData["SpeciesId"] = new SelectList(_speciesService.GetAll(), "Id", "Name");
             return View(animal);
         }
 
@@ -103,8 +103,7 @@ namespace PetAdoption.Web.Controllers
             {
                 try
                 {
-                    _context.Update(animal);
-                    await _context.SaveChangesAsync();
+                    _animalsService.Update(animal);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -119,21 +118,19 @@ namespace PetAdoption.Web.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["SpeciesId"] = new SelectList(_context.Species, "Id", "Name", animal.SpeciesId);
+            ViewData["SpeciesId"] = new SelectList(_speciesService.GetAll(), "Id", "Name");
             return View(animal);
         }
 
         // GET: Animals/Delete/5
-        public async Task<IActionResult> Delete(Guid? id)
+        public IActionResult Delete(Guid? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var animal = await _context.Animals
-                .Include(a => a.Species)
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var animal = _animalsService.GetById(id.Value);
             if (animal == null)
             {
                 return NotFound();
@@ -145,21 +142,20 @@ namespace PetAdoption.Web.Controllers
         // POST: Animals/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(Guid id)
+        public IActionResult DeleteConfirmed(Guid id)
         {
-            var animal = await _context.Animals.FindAsync(id);
+            var animal = _animalsService.GetById(id);
             if (animal != null)
             {
-                _context.Animals.Remove(animal);
+                _animalsService.DeleteById(id);
             }
 
-            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool AnimalExists(Guid id)
         {
-            return _context.Animals.Any(e => e.Id == id);
+            return _animalsService.GetById(id) != null;
         }
     }
 }

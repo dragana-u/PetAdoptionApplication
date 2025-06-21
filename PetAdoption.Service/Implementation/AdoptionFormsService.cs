@@ -32,17 +32,24 @@ namespace PetAdoption.Service.Implementation
 
         public List<AdoptionForm> GetAll()
         {
-            return _adoptionFormsRepository.GetAll(selector: x => x).ToList();
+            return _adoptionFormsRepository.GetAll(selector: x => x, include: x => x.Include(y => y.Animal).Include(y => y.Applicant)).ToList();
         }
 
         public AdoptionForm? GetById(Guid Id)
         {
-            return _adoptionFormsRepository.Get(selector: x => x, predicate: y => y.Id == Id);
+            return _adoptionFormsRepository.Get(selector: x => x, predicate: y => y.Id == Id, include: x => x.Include(y => y.Animal).Include(y => y.Applicant));
         }
 
         public AdoptionForm Update(AdoptionForm adoptionForm)
         {
-           return _adoptionFormsRepository.Update(adoptionForm);
+            var existing = _adoptionFormsRepository.Get(selector: x => x, predicate: x => x.Id == adoptionForm.Id);
+            if (existing == null)
+                throw new InvalidOperationException("Entity not found");
+            existing.AnimalId = adoptionForm.AnimalId;
+            existing.SubmittedOn = adoptionForm.SubmittedOn;
+            existing.Status = adoptionForm.Status;
+            existing.Message = adoptionForm.Message;
+            return _adoptionFormsRepository.Update(existing);
         }
     }
 }

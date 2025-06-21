@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using PetAdoption.Domain.Identity;
 using PetAdoption.Repository;
 using PetAdoption.Domain;
+using PetAdoption.Service.Interface;
+using PetAdoption.Service.Implementation;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,6 +17,12 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddDefaultIdentity<PetAdoptionApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+builder.Services.AddTransient<ISpeciesService, SpeciesService>();
+builder.Services.AddTransient<IAdoptionFormsService, AdoptionFormsService>();
+builder.Services.AddTransient<IAdoptionSheltersService, AdoptionSheltersService>();
+builder.Services.AddTransient<IAnimalsService, AnimalsService>();
 
 var app = builder.Build();
 

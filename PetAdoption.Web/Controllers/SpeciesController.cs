@@ -7,34 +7,34 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using PetAdoption.Domain.DomainModels;
 using PetAdoption.Repository;
+using PetAdoption.Service.Implementation;
+using PetAdoption.Service.Interface;
 
 namespace PetAdoption.Web.Controllers
 {
     public class SpeciesController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly ISpeciesService _speciesService;
 
-        public SpeciesController(ApplicationDbContext context)
+        public SpeciesController(ISpeciesService speciesService)
         {
-            _context = context;
+            this._speciesService = speciesService;
         }
 
         // GET: Species
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            return View(await _context.Species.ToListAsync());
+            return View(_speciesService.GetAll());
         }
 
         // GET: Species/Details/5
-        public async Task<IActionResult> Details(Guid? id)
+        public IActionResult Details(Guid? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
-
-            var species = await _context.Species
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var species = _speciesService.GetById(id.Value);
             if (species == null)
             {
                 return NotFound();
@@ -54,27 +54,26 @@ namespace PetAdoption.Web.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Name,Id")] Species species)
+        public IActionResult Create([Bind("Name,Id")] Species species)
         {
             if (ModelState.IsValid)
             {
                 species.Id = Guid.NewGuid();
-                _context.Add(species);
-                await _context.SaveChangesAsync();
+                _speciesService.Add(species);
                 return RedirectToAction(nameof(Index));
             }
             return View(species);
         }
 
         // GET: Species/Edit/5
-        public async Task<IActionResult> Edit(Guid? id)
+        public IActionResult Edit(Guid? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var species = await _context.Species.FindAsync(id);
+            var species = _speciesService.GetById(id.Value);
             if (species == null)
             {
                 return NotFound();
@@ -87,7 +86,7 @@ namespace PetAdoption.Web.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("Name,Id")] Species species)
+        public IActionResult Edit(Guid id, [Bind("Name,Id")] Species species)
         {
             if (id != species.Id)
             {
@@ -98,8 +97,7 @@ namespace PetAdoption.Web.Controllers
             {
                 try
                 {
-                    _context.Update(species);
-                    await _context.SaveChangesAsync();
+                    _speciesService.Update(species);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -118,15 +116,14 @@ namespace PetAdoption.Web.Controllers
         }
 
         // GET: Species/Delete/5
-        public async Task<IActionResult> Delete(Guid? id)
+        public IActionResult Delete(Guid? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var species = await _context.Species
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var species = _speciesService.GetById(id.Value);
             if (species == null)
             {
                 return NotFound();
@@ -140,19 +137,17 @@ namespace PetAdoption.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
-            var species = await _context.Species.FindAsync(id);
+            var species = _speciesService.GetById(id);
             if (species != null)
             {
-                _context.Species.Remove(species);
+                _speciesService.DeleteById(id);
             }
-
-            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool SpeciesExists(Guid id)
         {
-            return _context.Species.Any(e => e.Id == id);
+            return _speciesService.GetById(id) != null;
         }
     }
 }

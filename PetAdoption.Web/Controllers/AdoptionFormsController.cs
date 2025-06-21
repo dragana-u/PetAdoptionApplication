@@ -7,37 +7,40 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using PetAdoption.Domain.DomainModels;
 using PetAdoption.Repository;
+using PetAdoption.Service.Implementation;
+using PetAdoption.Service.Interface;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 
 namespace PetAdoption.Web.Controllers
 {
     public class AdoptionFormsController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IAdoptionFormsService _adoptionFormsService;
+        private readonly IAnimalsService _animalsService;
 
-        public AdoptionFormsController(ApplicationDbContext context)
+
+        public AdoptionFormsController(IAdoptionFormsService adoptionFormsService, IAnimalsService animalsService)
         {
-            _context = context;
+            _adoptionFormsService = adoptionFormsService;
+            _animalsService = animalsService;
         }
 
         // GET: AdoptionForms
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            var applicationDbContext = _context.AdoptionForms.Include(a => a.Animal).Include(a => a.Applicant);
-            return View(await applicationDbContext.ToListAsync());
+            return View(_adoptionFormsService.GetAll());
         }
 
         // GET: AdoptionForms/Details/5
-        public async Task<IActionResult> Details(Guid? id)
+        public IActionResult Details(Guid? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var adoptionForm = await _context.AdoptionForms
-                .Include(a => a.Animal)
-                .Include(a => a.Applicant)
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var adoptionForm = _adoptionFormsService.GetById(id.Value);
             if (adoptionForm == null)
             {
                 return NotFound();
@@ -47,10 +50,10 @@ namespace PetAdoption.Web.Controllers
         }
 
         // GET: AdoptionForms/Create
+        [Authorize]
         public IActionResult Create()
         {
-            ViewData["AnimalId"] = new SelectList(_context.Animals, "Id", "Name");
-            ViewData["ApplicantId"] = new SelectList(_context.Users, "Id", "Id");
+            ViewData["AnimalId"] = new SelectList(_animalsService.GetAll(), "Id", "Name");
             return View();
         }
 
@@ -59,35 +62,42 @@ namespace PetAdoption.Web.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("AnimalId,ApplicantId,SubmittedOn,Status,Message,Id")] AdoptionForm adoptionForm)
+        [Authorize]
+        public IActionResult Create([Bind("AnimalId,SubmittedOn,Status,Message,Id")] AdoptionForm adoptionForm)
         {
+            var userIdString = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (string.IsNullOrEmpty(userIdString))
+            {
+                return Unauthorized();
+            }
+
+            adoptionForm.ApplicantId = userIdString;
+
             if (ModelState.IsValid)
             {
                 adoptionForm.Id = Guid.NewGuid();
-                _context.Add(adoptionForm);
-                await _context.SaveChangesAsync();
+                _adoptionFormsService.Add(adoptionForm);
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["AnimalId"] = new SelectList(_context.Animals, "Id", "Name", adoptionForm.AnimalId);
-            ViewData["ApplicantId"] = new SelectList(_context.Users, "Id", "Id", adoptionForm.ApplicantId);
+            ViewData["AnimalId"] = new SelectList(_animalsService.GetAll(), "Id", "Name");
             return View(adoptionForm);
         }
 
         // GET: AdoptionForms/Edit/5
-        public async Task<IActionResult> Edit(Guid? id)
+        [Authorize]
+        public IActionResult Edit(Guid? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var adoptionForm = await _context.AdoptionForms.FindAsync(id);
+            var adoptionForm = _adoptionFormsService.GetById(id.Value);
             if (adoptionForm == null)
             {
                 return NotFound();
             }
-            ViewData["AnimalId"] = new SelectList(_context.Animals, "Id", "Name", adoptionForm.AnimalId);
-            ViewData["ApplicantId"] = new SelectList(_context.Users, "Id", "Id", adoptionForm.ApplicantId);
+            ViewData["AnimalId"] = new SelectList(_animalsService.GetAll(), "Id", "Name");
             return View(adoptionForm);
         }
 
@@ -96,7 +106,8 @@ namespace PetAdoption.Web.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("AnimalId,ApplicantId,SubmittedOn,Status,Message,Id")] AdoptionForm adoptionForm)
+        [Authorize]
+        public IActionResult Edit(Guid id, [Bind("AnimalId,SubmittedOn,Status,Message,Id")] AdoptionForm adoptionForm)
         {
             if (id != adoptionForm.Id)
             {
@@ -107,8 +118,7 @@ namespace PetAdoption.Web.Controllers
             {
                 try
                 {
-                    _context.Update(adoptionForm);
-                    await _context.SaveChangesAsync();
+                    _adoptionFormsService.Update(adoptionForm);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -123,23 +133,19 @@ namespace PetAdoption.Web.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["AnimalId"] = new SelectList(_context.Animals, "Id", "Name", adoptionForm.AnimalId);
-            ViewData["ApplicantId"] = new SelectList(_context.Users, "Id", "Id", adoptionForm.ApplicantId);
+            ViewData["AnimalId"] = new SelectList(_animalsService.GetAll(), "Id", "Name");
             return View(adoptionForm);
         }
 
         // GET: AdoptionForms/Delete/5
-        public async Task<IActionResult> Delete(Guid? id)
+        public IActionResult Delete(Guid? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var adoptionForm = await _context.AdoptionForms
-                .Include(a => a.Animal)
-                .Include(a => a.Applicant)
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var adoptionForm = _adoptionFormsService.GetById(id.Value);
             if (adoptionForm == null)
             {
                 return NotFound();
@@ -151,21 +157,19 @@ namespace PetAdoption.Web.Controllers
         // POST: AdoptionForms/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(Guid id)
+        public IActionResult DeleteConfirmed(Guid id)
         {
-            var adoptionForm = await _context.AdoptionForms.FindAsync(id);
+            var adoptionForm = _adoptionFormsService.GetById(id);
             if (adoptionForm != null)
             {
-                _context.AdoptionForms.Remove(adoptionForm);
+                _adoptionFormsService.DeleteById(id);
             }
-
-            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool AdoptionFormExists(Guid id)
         {
-            return _context.AdoptionForms.Any(e => e.Id == id);
+            return _adoptionFormsService.GetById(id) != null;
         }
     }
 }
