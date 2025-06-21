@@ -50,38 +50,38 @@ namespace PetAdoption.Web.Controllers
         }
 
         // GET: AdoptionForms/Create
-        [Authorize]
-        public IActionResult Create()
-        {
-            ViewData["AnimalId"] = new SelectList(_animalsService.GetAll(), "Id", "Name");
-            return View();
-        }
+        //[Authorize]
+        //public IActionResult Create()
+        //{
+        //    ViewData["AnimalId"] = new SelectList(_animalsService.GetAll(), "Id", "Name");
+        //    return View();
+        //}
 
         // POST: AdoptionForms/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        [Authorize]
-        public IActionResult Create([Bind("AnimalId,SubmittedOn,Status,Message,Id")] AdoptionForm adoptionForm)
-        {
-            var userIdString = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            if (string.IsNullOrEmpty(userIdString))
-            {
-                return Unauthorized();
-            }
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //[Authorize]
+        //public IActionResult Create([Bind("AnimalId,SubmittedOn,Status,Message,Id")] AdoptionForm adoptionForm)
+        //{
+        //    var userIdString = User.FindFirstValue(ClaimTypes.NameIdentifier);
+        //    if (string.IsNullOrEmpty(userIdString))
+        //    {
+        //        return Unauthorized();
+        //    }
 
-            adoptionForm.ApplicantId = userIdString;
+        //    adoptionForm.ApplicantId = userIdString;
 
-            if (ModelState.IsValid)
-            {
-                adoptionForm.Id = Guid.NewGuid();
-                _adoptionFormsService.Add(adoptionForm);
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["AnimalId"] = new SelectList(_animalsService.GetAll(), "Id", "Name");
-            return View(adoptionForm);
-        }
+        //    if (ModelState.IsValid)
+        //    {
+        //        adoptionForm.Id = Guid.NewGuid();
+        //        _adoptionFormsService.Add(adoptionForm);
+        //        return RedirectToAction(nameof(Index));
+        //    }
+        //    ViewData["AnimalId"] = new SelectList(_animalsService.GetAll(), "Id", "Name");
+        //    return View(adoptionForm);
+        //}
 
         // GET: AdoptionForms/Edit/5
         [Authorize]

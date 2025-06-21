@@ -4,6 +4,7 @@ using PetAdoption.Repository;
 using PetAdoption.Service.Interface;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,10 +14,12 @@ namespace PetAdoption.Service.Implementation
     public class AdoptionFormsService : IAdoptionFormsService
     {
         private readonly IRepository<AdoptionForm> _adoptionFormsRepository;
+        private readonly IRepository<Animal> _animalRepository;
 
-        public AdoptionFormsService(IRepository<AdoptionForm> adoptionFormsRepository)
+        public AdoptionFormsService(IRepository<AdoptionForm> adoptionFormsRepository, IRepository<Animal> animalRepository)
         {
             _adoptionFormsRepository = adoptionFormsRepository;
+            _animalRepository = animalRepository;
         }
 
         public AdoptionForm Add(AdoptionForm adoptionForm)
@@ -51,5 +54,42 @@ namespace PetAdoption.Service.Implementation
             existing.Message = adoptionForm.Message;
             return _adoptionFormsRepository.Update(existing);
         }
+
+        public bool Adopt(Guid animalId, string applicantId, string? message)
+        {
+            var animal = _animalRepository.Get(
+                selector: a => a,
+                predicate: a => a.Id == animalId,
+                include: a => a.Include(x => x.AdoptionForms));
+
+            if (animal == null)
+                throw new ArgumentException("Animal not found.", nameof(animalId));
+
+            if (animal.Status != "Available")
+                return false;
+
+            bool alreadyPending = animal.AdoptionForms?
+                .Any(f => f.ApplicantId == applicantId && f.Status == "Pending") ?? false;
+
+            if (alreadyPending)
+                return false;
+
+            var form = new AdoptionForm
+            {
+                Id = Guid.NewGuid(),
+                AnimalId = animal.Id,
+                ApplicantId = applicantId,
+                SubmittedOn = DateTime.UtcNow,
+                Status = "Pending",
+                Message = message
+            };
+            _adoptionFormsRepository.Insert(form);
+
+            animal.Status = "Reserved";
+            _animalRepository.Update(animal);
+
+            return true;
+        }
+
     }
 }

@@ -14,5 +14,6 @@ namespace PetAdoption.Service.Interface
         AdoptionForm Update(AdoptionForm adoptionForm);
         AdoptionForm DeleteById(Guid Id);
         AdoptionForm Add(AdoptionForm adoptionForm);
+        bool Adopt(Guid animalId, string applicantId, string ? message);
     }
 }

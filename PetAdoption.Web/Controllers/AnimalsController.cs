@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -16,11 +18,14 @@ namespace PetAdoption.Web.Controllers
     {
         private readonly IAnimalsService _animalsService;
         private readonly ISpeciesService _speciesService;
+        private readonly IAdoptionFormsService _adoptionFormsService;
 
-        public AnimalsController(IAnimalsService animalsService, ISpeciesService speciesService)
+
+        public AnimalsController(IAnimalsService animalsService, ISpeciesService speciesService, IAdoptionFormsService adoptionFormsService)
         {
             _animalsService = animalsService;
             _speciesService = speciesService;
+            _adoptionFormsService = adoptionFormsService;
         }
 
         // GET: Animals
@@ -152,7 +157,25 @@ namespace PetAdoption.Web.Controllers
 
             return RedirectToAction(nameof(Index));
         }
+        [Authorize]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Adopt(Guid animalId, string ? message)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
+            if (userId == null)
+                return Unauthorized();
+
+            var success = _adoptionFormsService.Adopt(animalId, userId, message);
+
+            TempData[success ? "Success" : "Error"] =
+                success
+                ? "You have successfully submitted an adoption form!"
+                : "This animal is already reserved/adopted or you have another pending adoption.";
+
+            return RedirectToAction(nameof(Index));
+        }
         private bool AnimalExists(Guid id)
         {
             return _animalsService.GetById(id) != null;
