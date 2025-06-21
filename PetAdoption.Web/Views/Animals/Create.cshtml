@@ -55,9 +55,14 @@
             </div>
             <div class="form-group">
                 <label asp-for="Status" class="control-label"></label>
-                <input asp-for="Status" class="form-control" />
+                <select asp-for="Status" class="form-control">
+                    <option value="Available">Available</option>
+                    <option value="Reserved">Reserved</option>
+                    <option value="Adopted">Adopted</option>
+                </select>
                 <span asp-validation-for="Status" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <label asp-for="SpeciesId" class="control-label"></label>
                 <select asp-for="SpeciesId" class ="form-control" asp-items="ViewBag.SpeciesId"></select>
