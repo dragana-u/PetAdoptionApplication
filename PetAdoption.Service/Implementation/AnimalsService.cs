@@ -44,5 +44,9 @@ namespace PetAdoption.Service.Implementation
         {
             return _animalRepository.Update(Animal);
         }
+        public ICollection<Animal> InsertMany(ICollection<Animal> animals)
+        {
+            return _animalRepository.InsertMany(animals);
+        }
     }
 }

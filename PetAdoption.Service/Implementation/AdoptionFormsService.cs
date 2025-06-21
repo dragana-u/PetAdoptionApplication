@@ -68,10 +68,11 @@ namespace PetAdoption.Service.Implementation
             if (animal.Status != "Available")
                 return false;
 
-            bool alreadyPending = animal.AdoptionForms?
-                .Any(f => f.ApplicantId == applicantId && f.Status == "Pending") ?? false;
+            bool applicantHasPending = _adoptionFormsRepository
+                .GetAll(x => x)
+                .Any(f => f.ApplicantId == applicantId && f.Status == "Pending");
 
-            if (alreadyPending)
+            if (applicantHasPending)
                 return false;
 
             var form = new AdoptionForm

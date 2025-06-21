@@ -14,5 +14,6 @@ namespace PetAdoption.Service.Interface
         Species Update(Species species);
         Species DeleteById(Guid Id);
         Species Add(Species species);
+        Species FindByName(string name);
     }
 }

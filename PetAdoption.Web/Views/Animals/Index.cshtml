@@ -46,6 +46,21 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+<form asp-action="Import" method="post" class="mb-3">
+    <input type="text" name="zip" value="97635" class="form-control d-inline w-auto" />
+    <select name="type" class="form-select d-inline w-auto mx-2" asp-items="ViewBag.SpeciesName">
+        <option value="">-- Select Species --</option>
+    </select>
+    <button class="btn btn-primary">Fetch from Petfinder</button>
+</form>
+@if (TempData["Warning"] != null)
+{
+    <div class="alert alert-warning alert-dismissible fade show" role="alert" style="background-color: #ffe5b4; color: #856404;">
+        @TempData["Warning"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
 <table class="table">
     <thead>
         <tr>
@@ -106,9 +121,13 @@
             <td>
                 @Html.DisplayFor(modelItem => item.IntakeDate)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ImageUrl)
-            </td>
+                <td>
+                    @if (!string.IsNullOrEmpty(item.ImageUrl))
+                    {
+                        <img src="@item.ImageUrl" alt="Animal photo" style="max-width:100px; max-height:100px;" />
+                    }
+                </td>
+
             <td>
                 @Html.DisplayFor(modelItem => item.Status)
             </td>

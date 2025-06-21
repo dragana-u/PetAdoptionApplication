@@ -294,7 +294,6 @@ C:\Users\Dragana\Desktop\Dragana\Finki\Semestri\VI semestar\IS\PetAdoptionApplic
 C:\Users\Dragana\Desktop\Dragana\Finki\Semestri\VI semestar\IS\PetAdoptionApplication\PetAdoption.Web\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.PetAdoption.Web.props
 C:\Users\Dragana\Desktop\Dragana\Finki\Semestri\VI semestar\IS\PetAdoptionApplication\PetAdoption.Web\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.PetAdoption.Web.props
 C:\Users\Dragana\Desktop\Dragana\Finki\Semestri\VI semestar\IS\PetAdoptionApplication\PetAdoption.Web\obj\Debug\net8.0\staticwebassets.pack.json
-C:\Users\Dragana\Desktop\Dragana\Finki\Semestri\VI semestar\IS\PetAdoptionApplication\PetAdoption.Web\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
 C:\Users\Dragana\Desktop\Dragana\Finki\Semestri\VI semestar\IS\PetAdoptionApplication\PetAdoption.Web\obj\Debug\net8.0\PetAdopt.AA7638D5.Up2Date
 C:\Users\Dragana\Desktop\Dragana\Finki\Semestri\VI semestar\IS\PetAdoptionApplication\PetAdoption.Web\obj\Debug\net8.0\PetAdoption.Web.dll
 C:\Users\Dragana\Desktop\Dragana\Finki\Semestri\VI semestar\IS\PetAdoptionApplication\PetAdoption.Web\obj\Debug\net8.0\refint\PetAdoption.Web.dll
@@ -302,3 +301,4 @@ C:\Users\Dragana\Desktop\Dragana\Finki\Semestri\VI semestar\IS\PetAdoptionApplic
 C:\Users\Dragana\Desktop\Dragana\Finki\Semestri\VI semestar\IS\PetAdoptionApplication\PetAdoption.Web\obj\Debug\net8.0\PetAdoption.Web.genruntimeconfig.cache
 C:\Users\Dragana\Desktop\Dragana\Finki\Semestri\VI semestar\IS\PetAdoptionApplication\PetAdoption.Web\obj\Debug\net8.0\ref\PetAdoption.Web.dll
 C:\Users\Dragana\Desktop\Dragana\Finki\Semestri\VI semestar\IS\PetAdoptionApplication\PetAdoption.Web\obj\Debug\net8.0\PetAdoption.Web.sourcelink.json
+C:\Users\Dragana\Desktop\Dragana\Finki\Semestri\VI semestar\IS\PetAdoptionApplication\PetAdoption.Web\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

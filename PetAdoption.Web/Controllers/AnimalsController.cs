@@ -19,20 +19,40 @@ namespace PetAdoption.Web.Controllers
         private readonly IAnimalsService _animalsService;
         private readonly ISpeciesService _speciesService;
         private readonly IAdoptionFormsService _adoptionFormsService;
+        private readonly IExternalAnimalImportService _importService;
 
 
-        public AnimalsController(IAnimalsService animalsService, ISpeciesService speciesService, IAdoptionFormsService adoptionFormsService)
+        public AnimalsController(IAnimalsService animalsService, ISpeciesService speciesService, IAdoptionFormsService adoptionFormsService, IExternalAnimalImportService importService)
         {
             _animalsService = animalsService;
             _speciesService = speciesService;
             _adoptionFormsService = adoptionFormsService;
+            _importService = importService;
         }
 
         // GET: Animals
         public IActionResult Index()
         {
+            ViewData["SpeciesName"] = new SelectList(_speciesService.GetAll(), "Name", "Name");
             return View(_animalsService.GetAll());
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Import(string zip = "97635", string type = "cat")
+        {
+            ViewData["SpeciesName"] = new SelectList(_speciesService.GetAll(), "Name", "Name");
+            try
+            {
+                await _importService.ImportAnimalsAsync(zip, type);
+            }
+            catch (Exception ex)
+            {
+                TempData["Warning"] = "Could not import animals. The species may not be found in that state, or the state/zip code does not exist.";
+            }
+            return RedirectToAction(nameof(Index));
+        }
+
 
         // GET: Animals/Details/5
         public IActionResult Details(Guid? id)

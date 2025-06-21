@@ -23,6 +23,14 @@ builder.Services.AddTransient<ISpeciesService, SpeciesService>();
 builder.Services.AddTransient<IAdoptionFormsService, AdoptionFormsService>();
 builder.Services.AddTransient<IAdoptionSheltersService, AdoptionSheltersService>();
 builder.Services.AddTransient<IAnimalsService, AnimalsService>();
+builder.Services.Configure<PetFinderOptions>(builder.Configuration.GetSection("Petfinder"));
+
+builder.Services.AddHttpClient<IPetfinderApiClient, PetfinderApiClient>(c =>
+{
+    c.BaseAddress = new("https://api.petfinder.com");
+});
+
+builder.Services.AddScoped<IExternalAnimalImportService, ExternalAnimalImportService>();
 
 var app = builder.Build();
 

@@ -30,6 +30,11 @@ namespace PetAdoption.Service.Implementation
             return _SpeciesRepository.Delete(Species);
         }
 
+        public Species FindByName(string name)
+        {
+            return _SpeciesRepository.Get(selector: x => x, predicate: x => x.Name == name);
+        }
+
         public List<Species> GetAll()
         {
             return _SpeciesRepository.GetAll(selector: x => x, include: x => x.Include(y => y.Animals)).ToList();

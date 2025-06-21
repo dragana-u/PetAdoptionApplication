@@ -14,5 +14,6 @@ namespace PetAdoption.Service.Interface
         Animal Update(Animal animal);
         Animal DeleteById(Guid Id);
         Animal Add(Animal animal);
+        public ICollection<Animal> InsertMany(ICollection<Animal> animals);
     }
 }

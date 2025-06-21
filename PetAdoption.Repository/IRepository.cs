@@ -13,6 +13,7 @@ namespace PetAdoption.Repository
     public interface IRepository<T> where T : BaseEntity
     {
         T Insert(T entity);
+        ICollection<T> InsertMany(ICollection<T> entity);
         T Update(T entity);
         T Delete(T entity);
 

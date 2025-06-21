@@ -67,6 +67,13 @@ namespace PetAdoption.Repository
             return entity;
         }
 
+        public ICollection<T> InsertMany(ICollection<T> entity)
+        {
+            _context.AddRange(entity);
+            _context.SaveChanges();
+            return entity;
+        }
+
         public T Update(T entity)
         {
             _context.Update(entity);
