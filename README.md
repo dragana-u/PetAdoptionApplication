@@ -6,3 +6,6 @@
 <li>1-* меѓу Animal и AdoptionForm</li>
 <li>1-* меѓу PetAdoptionApplicationUser и AdoptionForm</li>
 </ul>
+
+За користење на админ функционалности може да се најавете со: admin@gmail.com Admin123! <br>
+За користење функционалности за обичен корисник, доволно е да се регистрирате.
