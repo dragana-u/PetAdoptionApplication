@@ -85,6 +85,7 @@ namespace PetAdoption.Web.Controllers
 
         // GET: AdoptionForms/Edit/5
         [Authorize]
+        [Authorize(Roles = "Admin")]
         public IActionResult Edit(Guid? id)
         {
             if (id == null)
@@ -107,6 +108,7 @@ namespace PetAdoption.Web.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
+        [Authorize(Roles = "Admin")]
         public IActionResult Edit(Guid id, [Bind("AnimalId,SubmittedOn,Status,Message,Id")] AdoptionForm adoptionForm)
         {
             if (id != adoptionForm.Id)
@@ -138,6 +140,7 @@ namespace PetAdoption.Web.Controllers
         }
 
         // GET: AdoptionForms/Delete/5
+        [Authorize(Roles = "Admin")]
         public IActionResult Delete(Guid? id)
         {
             if (id == null)
@@ -157,6 +160,7 @@ namespace PetAdoption.Web.Controllers
         // POST: AdoptionForms/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public IActionResult DeleteConfirmed(Guid id)
         {
             var adoptionForm = _adoptionFormsService.GetById(id);

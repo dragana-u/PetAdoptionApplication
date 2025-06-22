@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -45,6 +46,8 @@ namespace PetAdoption.Web.Controllers
         }
 
         // GET: AdoptionShelters/Create
+
+        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             return View();
@@ -55,6 +58,7 @@ namespace PetAdoption.Web.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public IActionResult Create([Bind("Name,Address,PhoneNumber,Website,Id")] AdoptionShelter adoptionShelter)
         {
             if (ModelState.IsValid)
@@ -67,6 +71,7 @@ namespace PetAdoption.Web.Controllers
         }
 
         // GET: AdoptionShelters/Edit/5
+        [Authorize(Roles = "Admin")]
         public IActionResult Edit(Guid? id)
         {
             if (id == null)
@@ -87,6 +92,7 @@ namespace PetAdoption.Web.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public IActionResult Edit(Guid id, [Bind("Name,Address,PhoneNumber,Website,Id")] AdoptionShelter adoptionShelter)
         {
             if (id != adoptionShelter.Id)
@@ -117,6 +123,7 @@ namespace PetAdoption.Web.Controllers
         }
 
         // GET: AdoptionShelters/Delete/5
+        [Authorize(Roles = "Admin")]
         public IActionResult Delete(Guid? id)
         {
             if (id == null)
@@ -136,6 +143,7 @@ namespace PetAdoption.Web.Controllers
         // POST: AdoptionShelters/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public IActionResult DeleteConfirmed(Guid id)
         {
             var adoptionShelter = _adoptionSheltersService.DeleteById(id);

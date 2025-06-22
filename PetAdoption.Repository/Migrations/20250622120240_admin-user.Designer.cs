@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PetAdoption.Repository;
 
@@ -11,9 +12,11 @@ using PetAdoption.Repository;
 namespace PetAdoption.Repository.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250622120240_admin-user")]
+    partial class adminuser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -182,7 +185,7 @@ namespace PetAdoption.Repository.Migrations
 
                     b.HasIndex("ApplicantId");
 
-                    b.ToTable("AdoptionForms", (string)null);
+                    b.ToTable("AdoptionForms");
                 });
 
             modelBuilder.Entity("PetAdoption.Domain.DomainModels.AdoptionShelter", b =>
@@ -206,7 +209,7 @@ namespace PetAdoption.Repository.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("AdoptionShelters", (string)null);
+                    b.ToTable("AdoptionShelters");
                 });
 
             modelBuilder.Entity("PetAdoption.Domain.DomainModels.Animal", b =>
@@ -255,7 +258,7 @@ namespace PetAdoption.Repository.Migrations
 
                     b.HasIndex("SpeciesId");
 
-                    b.ToTable("Animals", (string)null);
+                    b.ToTable("Animals");
                 });
 
             modelBuilder.Entity("PetAdoption.Domain.DomainModels.Species", b =>
@@ -270,7 +273,7 @@ namespace PetAdoption.Repository.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Species", (string)null);
+                    b.ToTable("Species");
                 });
 
             modelBuilder.Entity("PetAdoption.Domain.Identity.PetAdoptionApplicationUser", b =>
