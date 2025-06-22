@@ -9,3 +9,6 @@
 
 За користење на админ функционалности може да се најавете со: admin@gmail.com Admin123! <br>
 За користење функционалности за обичен корисник, доволно е да се регистрирате.
+
+Хостирана на следниот линк: </br>
+<a href="https://petadoptionweb20250622175940-ezbke4bbb2f4grf3.canadacentral-01.azurewebsites.net/" target="_blank">https://petadoptionweb20250622175940-ezbke4bbb2f4grf3.canadacentral-01.azurewebsites.net/</a>
