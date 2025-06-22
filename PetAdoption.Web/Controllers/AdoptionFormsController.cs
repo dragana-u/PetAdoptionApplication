@@ -27,9 +27,20 @@ namespace PetAdoption.Web.Controllers
         }
 
         // GET: AdoptionForms
+        [Authorize]
         public IActionResult Index()
         {
-            return View(_adoptionFormsService.GetAll());
+            if (User.IsInRole("Admin"))
+            {
+                return View(_adoptionFormsService.GetAll());
+            }
+            else
+            {
+                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                var allForms = _adoptionFormsService.GetAll();
+                var userForms = allForms.Where(f => f.ApplicantId == userId).ToList();
+                return View(userForms);
+            }
         }
 
         // GET: AdoptionForms/Details/5
