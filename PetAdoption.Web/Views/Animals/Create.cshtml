@@ -67,15 +67,12 @@
                 <label asp-for="SpeciesId" class="control-label"></label>
                 <select asp-for="SpeciesId" class ="form-control" asp-items="ViewBag.SpeciesId"></select>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+            <div class="form-group mt-3 mb-5">
+                <input type="submit" value="Create" class="btn btn-outline-success fw-bolder" />
+                <a asp-action="Index" class="btn btn-secondary">Back to List</a>
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {

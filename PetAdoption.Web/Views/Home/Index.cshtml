@@ -2,7 +2,75 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container py-4 position-relative">
+    <div style="
+        position: absolute;
+        top: 50%;
+        right: 5%;
+        transform: translateY(-50%);
+        width: 350px;
+        height: 350px;
+        background: radial-gradient(circle at center, #FFD580 0%, #FFA500 100%);
+        border-radius: 50%;
+        z-index: 0;
+        opacity: 0.3;
+    "></div>
+    <div class="row align-items-center position-relative" style="z-index: 1;">
+        <div class="col-md-7">
+            <h1 class="display-3 fw-bold mb-3" style="font-family: 'Comic Sans MS', cursive;">Find Your New Best Friend</h1>
+            <p class="lead mb-4">
+                Welcome to PetAdoption! Browse our list of adorable pets looking for a loving home. Start your adoption journey today and make a difference in a pet's life.
+            </p>
+            <a class="btn btn-warning btn-lg px-4 text-white fw-bold" style="background-color: #FFA500; border: none;" asp-controller="Animals" asp-action="Index">See available pets</a>
+
+        </div>
+        <div class="col-md-5 text-center">
+            <img src="https://png.pngtree.com/png-clipart/20250207/original/pngtree-heartwarming-dog-and-cat-companionship-illustration-png-image_19841845.png"
+                 alt="Cute puppies and kittens"
+                  style="max-height: 450px;">
+        </div>
+    </div>
 </div>
+
+    <div class="container py-5">
+        <h2 class="mb-5 text-center" style="font-family: 'Comic Sans MS', cursive;">Our services</h2>
+        <div class="row justify-content-center g-4 text-center">
+
+            <div class="col-6 col-md-3">
+                <a href="/AdoptionForms" class="text-decoration-none text-dark">
+                    <div class="card h-100 shadow-sm border-0 rounded-4 p-4" style="background-color: #f0f9ff;">
+                        <img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" alt="Adoption Forms" class="mx-auto mb-3" style="width: 60px;">
+                        <h6 class="fw-bold">Adoption Forms</h6>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-6 col-md-3">
+                <a href="/Animals" class="text-decoration-none text-dark">
+                    <div class="card h-100 shadow-sm border-0 rounded-4 p-4" style="background-color: #fffce9;">
+                    <img src="https://icons.iconarchive.com/icons/iconarchive/cute-animal/512/Cute-Rabbit-icon.png" alt="Animals" class="mx-auto mb-3" style="width: 60px;">
+                        <h6 class="fw-bold">Animals</h6>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-6 col-md-3">
+                <a href="/Species" class="text-decoration-none text-dark">
+                    <div class="card h-100 shadow-sm border-0 rounded-4 p-4" style="background-color: #e9fff5;">
+                        <img src="https://cdn-icons-png.flaticon.com/512/616/616556.png" alt="Species" class="mx-auto mb-3" style="width: 60px;">
+                        <h6 class="fw-bold">Species</h6>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-6 col-md-3">
+                <a href="/AdoptionShelters" class="text-decoration-none text-dark">
+                    <div class="card h-100 shadow-sm border-0 rounded-4 p-4" style="background-color: #fef1f3;">
+                        <img src="https://cdn-icons-png.flaticon.com/512/3069/3069173.png" alt="Adoption Shelters" class="mx-auto mb-3" style="width: 60px;">
+                        <h6 class="fw-bold">Adoption Shelters</h6>
+                    </div>
+                </a>
+            </div>
+
+        </div>
+    </div>

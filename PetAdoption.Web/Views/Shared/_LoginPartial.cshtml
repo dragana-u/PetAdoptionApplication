@@ -17,11 +17,19 @@
 }
 else
 {
-    <li class="nav-item">
-        <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Register</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Login</a>
-    </li>
+        <li class="nav-item">
+            <a class="btn btn-outline-warning me-2"
+               style="border-color: #FFD580; color: #FFA500; background-color: transparent;"
+               asp-area="Identity" asp-page="/Account/Register">
+                Register
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="btn btn-warning btn text-white me-2" style="background-color: #FFA500; border: none;"
+               asp-area="Identity" asp-page="/Account/Login">
+                Login
+            </a>
+        </li>
+
 }
 </ul>

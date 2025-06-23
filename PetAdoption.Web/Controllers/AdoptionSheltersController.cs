@@ -146,7 +146,7 @@ namespace PetAdoption.Web.Controllers
         [Authorize(Roles = "Admin")]
         public IActionResult DeleteConfirmed(Guid id)
         {
-            var adoptionShelter = _adoptionSheltersService.DeleteById(id);
+            var adoptionShelter = _adoptionSheltersService.GetById(id);
             if (adoptionShelter != null)
             {
                 _adoptionSheltersService.DeleteById(id);

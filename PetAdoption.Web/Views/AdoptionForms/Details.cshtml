@@ -44,11 +44,13 @@
     </dl>
 </div>
 <div>
-    <div>
-        @if (User.IsInRole("Admin"))
-        {
-            <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a>
-        }
-        <a asp-action="Index">Back to List</a>
+    <div class="d-flex justify-content-between">
+        <div>
+            @if (User.IsInRole("Admin"))
+            {
+                <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-outline-warning fw-bolder me-2">Edit</a>
+            }
+            <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+        </div>
     </div>
 </div>

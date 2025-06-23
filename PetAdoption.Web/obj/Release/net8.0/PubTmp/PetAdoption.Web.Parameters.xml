@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="PetAdoptionWeb20250622175940" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\Users\\Dragana\\Desktop\\Dragana\\Finki\\Semestri\\VI\ semestar\\IS\\PetAdoptionApplication\\PetAdoption\.Web\\obj\\Release\\net8\.0\\PubTmp\\Out\\$" />
+  </parameter>
+  <parameter name="PetAdoption.Repository.ApplicationDbContext" description="" value="Server=tcp:petadoption-webdbserver.database.windows.net,1433;Initial Catalog=PetAdoption.Web_db;Persist Security Info=False;User ID=admin123;Password=Ga23@lt*.test;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;" tags="dbfullsql">
+    <parameterEntry kind="ProviderPath" scope="dbfullsql" match="^C:\\Users\\Dragana\\Desktop\\Dragana\\Finki\\Semestri\\VI\ semestar\\IS\\PetAdoptionApplication\\PetAdoption\.Web\\obj\\Release\\net8\.0\\PubTmp\\EFSQLScripts\\PetAdoption\.Repository\.ApplicationDbContext\.sql$" />
+  </parameter>
+</parameters>

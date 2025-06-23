@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project>
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <History>True|2025-06-23T13:00:02.5610634Z||;True|2025-06-22T18:30:52.7259418+02:00||;False|2025-06-22T18:24:41.0613395+02:00||;False|2025-06-22T18:21:17.2338849+02:00||;False|2025-06-22T18:19:58.6623743+02:00||;False|2025-06-22T18:12:11.1096972+02:00||;False|2025-06-22T18:07:39.1842771+02:00||;</History>
+    <LastFailureDetails />
+  </PropertyGroup>
+  <ItemGroup>
+    <DestinationConnectionStrings Include="ApplicationDbContextConnection">
+      <Value>Data Source=petadoption-webdbserver.database.windows.net,1433%3bInitial Catalog=PetAdoption.Web_db%3bAuthentication=ActiveDirectoryManagedIdentity</Value>
+    </DestinationConnectionStrings>
+    <DestinationConnectionStrings Include="DefaultConnection">
+      <Value>Data Source=tcp:petadoption-webdbserver.database.windows.net,1433%3bInitial Catalog=PetAdoption.Web_db%3bAuthentication=ActiveDirectoryDefault%3b</Value>
+    </DestinationConnectionStrings>
+    <DestinationConnectionStrings Include="Petfinder:ApiKey">
+      <Value>Data Source=tcp:petadoption-webdbserver.database.windows.net,1433%3bInitial Catalog=PetAdoption.Web_db%3bAuthentication=ActiveDirectoryDefault%3b</Value>
+    </DestinationConnectionStrings>
+    <DestinationConnectionStrings Include="Petfinder:ApiSecret">
+      <Value>Data Source=tcp:petadoption-webdbserver.database.windows.net,1433%3bInitial Catalog=PetAdoption.Web_db%3bAuthentication=ActiveDirectoryDefault%3b</Value>
+    </DestinationConnectionStrings>
+  </ItemGroup>
+  <ItemGroup>
+    <EFMigrations Include="PetAdoption.Repository.ApplicationDbContext">
+      <Value>Server=tcp:petadoption-webdbserver.database.windows.net,1433%3bInitial Catalog=PetAdoption.Web_db%3bPersist Security Info=False%3bUser ID=admin123%3bPassword=Ga23%40lt%2a.test%3bMultipleActiveResultSets=False%3bEncrypt=True%3bTrustServerCertificate=False%3bConnection Timeout=30%3b</Value>
+    </EFMigrations>
+  </ItemGroup>
+</Project>
